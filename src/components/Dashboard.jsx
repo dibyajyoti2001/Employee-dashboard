@@ -17,7 +17,7 @@ export default function Dashboard({ employees }) {
         <input
           type="text"
           placeholder="Search by ID"
-          className="border border-gray-300 rounded py-2 px-3 mr-2"
+          className="border border-gray-300 rounded py-2 px-3 mr-2 text-gray-950"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
@@ -33,7 +33,8 @@ export default function Dashboard({ employees }) {
           ? searchResults.map((employee) => (
               <EmployeeCard key={employee.id} employee={employee} />
             ))
-          : employees.map((employee) => (
+          : Array.isArray(employees) &&
+            employees.map((employee) => (
               <EmployeeCard key={employee.id} employee={employee} />
             ))}
       </div>
