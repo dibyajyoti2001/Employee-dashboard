@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
+import EmployeeDetails from "./components/EmployeeDetails";
 import config from "./config/config";
 import "./App.css";
 
@@ -16,16 +18,24 @@ function App() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setEmployees(data.data);
+      setEmployees(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   return (
-    <div className="container mx-auto">
-      <Dashboard employees={employees} />
-    </div>
+    <Router>
+      <div className="container mx-auto">
+        <Routes>
+          <Route path="/" element={<Dashboard employees={employees} />} />
+          <Route
+            path="/employee-detail/:id"
+            element={<EmployeeDetails employees={employees} />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
