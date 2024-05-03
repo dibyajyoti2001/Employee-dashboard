@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import EmployeeDetails from "./components/EmployeeDetails";
-import config from "./config/config";
 import "./App.css";
 
 function App() {
-  const url = config.projectUrl;
-
   const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
@@ -16,7 +13,9 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(
+        "https://dummy.restapiexample.com/api/v1/employees"
+      );
       const data = await response.json();
       setEmployees(data);
     } catch (error) {
