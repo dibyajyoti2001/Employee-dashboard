@@ -17,7 +17,7 @@ function App() {
         "https://dummy.restapiexample.com/api/v1/employees"
       );
       const data = await response.json();
-      setEmployees(data);
+      setEmployees(data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
